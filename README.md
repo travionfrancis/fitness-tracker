@@ -4,7 +4,7 @@
 
 ## Link to deployed application:
 
-https://workout-tracker-1088.herokuapp.com/
+https://your-new-fitness-tracker.herokuapp.com/
 
 ## Description
 An app to view, create and track daily workouts
