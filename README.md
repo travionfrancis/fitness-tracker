@@ -4,7 +4,7 @@
 
 ## Link to deployed application:
 
-https://your-new-fitness-tracker.herokuapp.com/
+https://fitness-tracker-travi.herokuapp.com/
 
 ## Description
 An app to view, create and track daily workouts
