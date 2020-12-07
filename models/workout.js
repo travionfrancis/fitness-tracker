@@ -1,5 +1,5 @@
+// Dont forget to install express and everything also
 const mongoose = require("mongoose");
-
 
 const Schema = mongoose.Schema;
 

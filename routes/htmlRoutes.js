@@ -2,6 +2,7 @@
 const Router = require("express").Router();
 const path = require("path");
 
+// Look at this again if it doesnt work
 Router.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "../public/index.html"));
 });

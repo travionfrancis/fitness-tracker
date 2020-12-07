@@ -23,6 +23,3 @@ This project is licensed under the MIT license.
 
 ## Contributing
 Nothing
-
-## Questions
-If you have any questions about the repo, open an issue or contact me directly at rohan_188@yahoo.com. You can find more of my work at [roan1088](https://github.com/roan1088).
