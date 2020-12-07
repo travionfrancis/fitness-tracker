@@ -1,32 +1,37 @@
+// Importing express server module
 const express = require("express");
+const path = require("path");
+// Importing the mongoose and morgan logger modules
+const logger = require("morgan");
 const mongoose = require("mongoose");
 
-const PORT = process.env.PORT || 8008
-
-const htmlRouter = require("./routes/view.js");
-const apiRouter = require("./routes/api.js");
-
+// Setting the Express App
 const app = express();
+const PORT = process.env.PORT || 8080;
 
+// Setting up logger
 app.use(logger("dev"));
 
+// Setting the Express App to handle data parsing
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.use(express.static("public"));
+// Connecting to the db
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", {
+  useNewUrlParser: true,
+  useFindAndModify: false,
+  useUnifiedTopology: true
+});
 
-mongoose.connect(
-  process.env.MONGODB_URI || 'mongodb://localhost/columbia',
-  {
-    useNewUrlParser: true,
-    useFindAndModify: false
-  }
-);
+// Routes
+// For static files, look in the public folder
+app.use(express.static(path.join(__dirname, 'public')));
+// API Routes
+app.use("/api", require("./routes/apiRoutes.js"));
+// HTML Routes
+app.use("/", require("./routes/htmlRoutes.js"));
 
-// routes
-app.use("/", htmlRouter);
-app.use(apiRouter);
-
-app.listen(PORT, () => {
-  console.log(`App running on port ${PORT}!`);
+// Starting the server
+app.listen(PORT, function() {
+    console.log("App listening on PORT " + PORT);
 });

@@ -1,16 +1,17 @@
-const router = require("express").Router();
+// Importing the express router
+const Router = require("express").Router();
 const path = require("path");
 
-router.get("/", (req, res) => {
+Router.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "../public/index.html"));
 });
 
-router.get("/exercise", (req, res) => {
+Router.get("/exercise", (req, res) => {
   res.sendFile(path.join(__dirname, "../public/exercise.html"));
 });
 
-router.get("/stats", (req, res) => {
+Router.get("/stats", (req, res) => {
   res.sendFile(path.join(__dirname, "../public/stats.html"));
 });
 
-module.exports = router;
+module.exports = Router;
