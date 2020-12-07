@@ -1,23 +1,60 @@
-// Importing mongoose schema to create model
 const mongoose = require("mongoose");
+
+
 const Schema = mongoose.Schema;
 
-// Schema for the model
-const WorkoutSchema = new Schema({
-  day: {
-    type: Date,
-    default: Date.now
+const workoutSchema = new Schema (
+  {
+    day: {
+      type: Date,
+      default: () => new Date()
+    },
+    exercises: [{
+        // name
+      name: {
+        type: String
+      },
+
+      // type
+      type: {
+        type: String
+      },
+
+      // weight
+      weight: {
+        type: Number
+      },
+
+      // sets
+      sets: {
+        type: Number
+      },
+
+      // reps
+      reps: {
+        type: Number
+      },
+
+      // duration
+      duration: {
+        type: Number
+      },
+    }]
   },
-  exercises: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "Exercise"
+  {
+    toJSON: {
+      virtuals: true
     }
-  ]
+  }
+);
+
+workoutSchema.virtual("totalDuration").get(function () {
+
+  return this.exercises.reduce((total, exercise) => {
+    return total + exercise.duration;
+  }, 0);
 });
 
-// Defining a model using the schema
-const Workout = mongoose.model("Workout", WorkoutSchema);
+const Workout = mongoose.model("Workout", workoutSchema);
 
-// Exporting the model
 module.exports = Workout;
